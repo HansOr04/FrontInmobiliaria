@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 import { SITE_CONFIG } from '@/constants/config'
@@ -9,10 +10,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo y descripción */}
           <div>
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-white">ORTIZ</span>{' '}
-              <span className="text-corporate-green">IDROVO</span>
-            </div>
+            <Link href="/" className="mb-4 block" aria-label="Ir al inicio">
+              <Image
+                src="/logo.svg"
+                alt="Ortiz Idrovo"
+                width={240}
+                height={135}
+                className="h-16 w-auto"
+              />
+            </Link>
             <p className="text-sm text-gray-300 mb-4">
               Soluciones integrales en el sector contable, tributario, financiero, laboral e inmobiliario ecuatoriano. Tu confianza, nuestro compromiso.
             </p>

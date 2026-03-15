@@ -84,7 +84,7 @@ export default function ContactForm() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Ubicación</h3>
-              <p className="text-gray-600">Av. Francisco de Orellana, Guayaquil, Ecuador</p>
+              <p className="text-gray-600">Quito, Ecuador</p>
             </div>
           </div>
 

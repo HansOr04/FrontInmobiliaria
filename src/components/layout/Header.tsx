@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X, ChevronDown, Building2, TrendingUp, Users, GraduationCap, Briefcase } from 'lucide-react'
@@ -100,27 +101,29 @@ export default function Header() {
         </button>
 
         {activeDropdown === key && (
-          <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
-            {section.items.map((item: any, idx) =>
-              item.divider ? (
-                <div key={idx} className="my-2 border-t border-gray-200" />
-              ) : (
-                <Link
-                  key={idx}
-                  href={item.href!}
-                  className="block px-4 py-3 hover:bg-purple-50 transition-colors"
-                >
-                  <div className="font-medium text-sm text-gray-900 hover:text-corporate-purple">
-                    {item.label}
-                  </div>
-                  {item.description && (
-                    <div className="text-xs text-gray-500 mt-0.5">
-                      {item.description}
+          <div className="absolute top-full left-0 pt-2 w-80 z-50">
+            <div className="bg-white rounded-lg shadow-xl border border-gray-200 py-2">
+              {section.items.map((item: any, idx) =>
+                item.divider ? (
+                  <div key={idx} className="my-2 border-t border-gray-200" />
+                ) : (
+                  <Link
+                    key={idx}
+                    href={item.href!}
+                    className="block px-4 py-3 hover:bg-purple-50 transition-colors"
+                  >
+                    <div className="font-medium text-sm text-gray-900 hover:text-corporate-purple">
+                      {item.label}
                     </div>
-                  )}
-                </Link>
-              )
-            )}
+                    {item.description && (
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        {item.description}
+                      </div>
+                    )}
+                  </Link>
+                )
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -137,16 +140,17 @@ export default function Header() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
-            <div className="text-lg font-bold">
-              <span className="text-purple-700">Ortiz</span>{' '}
-              <span className="text-gray-800">Idrovo</span>
-            </div>
+          <Link href="/" aria-label="Ir al inicio">
+            <Image
+              src="/logo.svg"
+              alt="Ortiz Idrovo"
+              width={280}
+              height={158}
+              priority
+              className="h-20 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

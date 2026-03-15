@@ -26,7 +26,8 @@ export default function ContactoPage() {
       <div className="container-custom mt-16">
         <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 h-[400px] overflow-hidden">
             <iframe 
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x902d6df38a7c2957%3A0xc4eb789b52a65fe0!2sGuayaquil%2C%20Ecuador!5e0!3m2!1sen!2sus!4v1709149491873!5m2!1sen!2sus" 
+               title="Ubicación de Inmobiliaria Ortiz Idrovo"
+               src="https://www.openstreetmap.org/export/embed.html?bbox=-78.55%2C-0.28%2C-78.45%2C-0.18&amp;layer=mapnik&amp;marker=-0.23%2C-78.50" 
                width="100%" 
                height="100%" 
                style={{ border: 0, borderRadius: '0.75rem' }} 
