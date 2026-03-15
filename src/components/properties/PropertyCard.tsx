@@ -31,7 +31,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
-          src={property.main_image || '/images/placeholders/property.jpg'}
+          src={property.main_image || '/images/placeholders/property.svg'}
           alt={property.title}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-300"

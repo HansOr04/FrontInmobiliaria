@@ -2,6 +2,13 @@ import { useQuery } from '@tanstack/react-query'
 import api from '@/lib/api'
 import type { Property, PropertySearchParams, PropertySearchResponse } from '@/types/property'
 
+const extractPropertiesArray = (payload: any): Property[] => {
+  if (Array.isArray(payload?.properties)) return payload.properties
+  if (Array.isArray(payload?.data)) return payload.data
+  if (Array.isArray(payload)) return payload
+  return []
+}
+
 export const useProperties = (filters: PropertySearchParams = { sort_by: 'date_desc', sort_order: 'desc' }, page: number = 1) => {
   return useQuery({
     queryKey: ['properties', filters, page],
@@ -62,8 +69,8 @@ export const useFeaturedProperties = (limit: number = 8) => {
   return useQuery({
     queryKey: ['featured-properties', limit],
     queryFn: async () => {
-      const { data } = await api.get<{ properties: Property[] }>(`/properties/featured?limit=${limit}`)
-      return data.properties
+      const { data } = await api.get<any>(`/properties/featured?limit=${limit}`)
+      return extractPropertiesArray(data)
     },
     staleTime: 10 * 60 * 1000, // 10 minutes
   })
@@ -73,8 +80,8 @@ export const useSimilarProperties = (propertyId: string, limit: number = 4) => {
   return useQuery({
     queryKey: ['similar-properties', propertyId, limit],
     queryFn: async () => {
-      const { data } = await api.get<{ properties: Property[] }>(`/properties/${propertyId}/similar?limit=${limit}`)
-      return data.properties
+      const { data } = await api.get<any>(`/properties/${propertyId}/similar?limit=${limit}`)
+      return extractPropertiesArray(data)
     },
     enabled: !!propertyId,
     staleTime: 10 * 60 * 1000,

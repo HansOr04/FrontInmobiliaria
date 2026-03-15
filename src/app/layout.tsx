@@ -39,7 +39,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${poppins.variable} ${inter.variable} `}>
+    <html
+      lang="es"
+      data-scroll-behavior="smooth"
+      className={`${poppins.variable} ${inter.variable} `}
+    >
       <body className="min-h-screen flex flex-col">
         <Providers>
           <Header />

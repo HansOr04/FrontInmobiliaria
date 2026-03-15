@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1F3A8A"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="120" y="220" width="960" height="480" rx="24" fill="rgba(255,255,255,0.12)"/>
+  <path d="M240 590L430 430L570 550L760 370L960 590" stroke="white" stroke-opacity="0.9" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="430" cy="380" r="46" fill="white" fill-opacity="0.85"/>
+  <text x="600" y="780" text-anchor="middle" fill="white" fill-opacity="0.9" font-family="Arial, sans-serif" font-size="52" font-weight="700">Imagen no disponible</text>
+</svg>
