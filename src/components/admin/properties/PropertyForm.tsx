@@ -21,7 +21,7 @@ import { CITIES, AMENITIES } from '@/constants/amenities';
 import { Property } from '@/types/property';
 
 interface PropertyFormProps {
-  initialData?: Partial<Property>;
+  initialData?: Partial<Property> | any;
   onSubmit: (data: any) => Promise<void>;
   isSubmitting?: boolean;
 }
@@ -93,29 +93,30 @@ export function PropertyForm({
 
   useEffect(() => {
     if (initialData) {
+      const data = initialData as any;
       setFormData({
         ...formData,
-        ...initialData,
+        ...data,
         // Ensure numbers are converted to strings for inputs
-        price: initialData.price?.toString() || '',
-        price_per_sqm: initialData.price_per_sqm?.toString() || '',
-        latitude: initialData.latitude?.toString() || '',
-        longitude: initialData.longitude?.toString() || '',
-        bedrooms: initialData.bedrooms?.toString() || '',
-        bathrooms: initialData.bathrooms?.toString() || '',
-        half_bathrooms: initialData.half_bathrooms?.toString() || '',
-        parking_spaces: initialData.parking_spaces?.toString() || '',
-        area_total: initialData.area_total?.toString() || '',
-        area_built: initialData.area_built?.toString() || '',
-        year_built: initialData.year_built?.toString() || '',
-        floor: initialData.floor?.toString() || '',
-        total_floors: initialData.total_floors?.toString() || '',
+        price: data.price?.toString() || '',
+        price_per_sqm: data.price_per_sqm?.toString() || data.price_per_m2?.toString() || '',
+        latitude: data.latitude?.toString() || '',
+        longitude: data.longitude?.toString() || '',
+        bedrooms: data.bedrooms?.toString() || '',
+        bathrooms: data.bathrooms?.toString() || '',
+        half_bathrooms: data.half_bathrooms?.toString() || '',
+        parking_spaces: data.parking_spaces?.toString() || '',
+        area_total: data.area_total?.toString() || '',
+        area_built: data.area_built?.toString() || '',
+        year_built: data.year_built?.toString() || data.construction_year?.toString() || '',
+        floor: data.floor?.toString() || data.floor_number?.toString() || '',
+        total_floors: data.total_floors?.toString() || '',
         
         // Ensure objects/arrays exist
-        building_amenities: initialData.building_amenities || {},
-        unit_features: initialData.unit_features || {},
-        video_urls: initialData.video_urls?.length ? initialData.video_urls : [''],
-        keywords: initialData.keywords || [],
+        building_amenities: data.building_amenities || {},
+        unit_features: data.unit_features || {},
+        video_urls: data.video_urls?.length ? data.video_urls : data.video_url ? [data.video_url] : [''],
+        keywords: data.keywords || [],
       });
     }
   }, [initialData]);
@@ -285,7 +286,7 @@ export function PropertyForm({
                     <Checkbox
                       id="price_negotiable"
                       checked={formData.price_negotiable}
-                      onCheckedChange={(checked) => handleChange('price_negotiable', checked)}
+                      onChange={(e) => handleChange('price_negotiable', e.target.checked)}
                     />
                     <Label htmlFor="price_negotiable">Precio Negociable</Label>
                   </div>
@@ -534,7 +535,7 @@ export function PropertyForm({
                     <Checkbox
                       id={`unit_${amenity.id}`}
                       checked={!!formData.unit_features?.[amenity.id]}
-                      onCheckedChange={(checked) => handleAmenityChange('unit_features', amenity.id, checked as boolean)}
+                      onChange={(e) => handleAmenityChange('unit_features', amenity.id, e.target.checked)}
                     />
                     <Label htmlFor={`unit_${amenity.id}`} className="cursor-pointer font-normal">
                       {amenity.icon} {amenity.name}
@@ -559,7 +560,7 @@ export function PropertyForm({
                     <Checkbox
                       id={`building_${amenity.id}`}
                       checked={!!formData.building_amenities?.[amenity.id]}
-                      onCheckedChange={(checked) => handleAmenityChange('building_amenities', amenity.id, checked as boolean)}
+                      onChange={(e) => handleAmenityChange('building_amenities', amenity.id, e.target.checked)}
                     />
                     <Label htmlFor={`building_${amenity.id}`} className="cursor-pointer font-normal">
                       {amenity.icon} {amenity.name}
@@ -653,7 +654,7 @@ export function PropertyForm({
                 </div>
                 <Checkbox
                   checked={formData.published}
-                  onCheckedChange={(checked) => handleChange('published', checked)}
+                  onChange={(e) => handleChange('published', e.target.checked)}
                 />
               </div>
 
@@ -664,7 +665,7 @@ export function PropertyForm({
                 </div>
                 <Checkbox
                   checked={formData.featured}
-                  onCheckedChange={(checked) => handleChange('featured', checked)}
+                  onChange={(e) => handleChange('featured', e.target.checked)}
                 />
               </div>
 

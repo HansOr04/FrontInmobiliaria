@@ -10,7 +10,7 @@ interface PricingPlan {
   features: string[]
   highlighted?: boolean
   cta: string
-  ctaVariant?: 'default' | 'secondary' | 'orange'
+  ctaVariant?: 'default' | 'secondary' | 'orange' | 'outline'
 }
 
 interface PricingTableProps {

@@ -68,7 +68,7 @@ export function LeadTable({ leads, isLoading, onAssign }: LeadTableProps) {
             <TableHead className="w-12">
               <Checkbox
                 checked={selected.length === leads.length}
-                onCheckedChange={handleSelectAll}
+                onChange={(e) => handleSelectAll(e.target.checked)}
               />
             </TableHead>
             <TableHead>Nombre</TableHead>
@@ -87,7 +87,7 @@ export function LeadTable({ leads, isLoading, onAssign }: LeadTableProps) {
               <TableCell>
                 <Checkbox
                   checked={selected.includes(lead.id)}
-                  onCheckedChange={() => handleSelect(lead.id)}
+                  onChange={() => handleSelect(lead.id)}
                 />
               </TableCell>
               <TableCell>

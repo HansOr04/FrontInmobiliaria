@@ -30,13 +30,13 @@ export default function PropertiesPage() {
   // Use the existing properties hook
   const { data, isLoading } = useProperties(
     {
-      property_type: filters.property_type && filters.property_type !== 'ALL' ? filters.property_type : undefined,
+      property_type: filters.property_type && filters.property_type !== 'ALL' ? (filters.property_type as any) : undefined,
       operation_type: filters.operation_type && filters.operation_type !== 'ALL' ? (filters.operation_type as 'venta' | 'alquiler') : undefined,
       status: filters.status && filters.status !== 'ALL' ? filters.status : undefined,
       search: filters.search || undefined,
       page,
       limit: 20,
-    },
+    } as any,
     page
   );
 

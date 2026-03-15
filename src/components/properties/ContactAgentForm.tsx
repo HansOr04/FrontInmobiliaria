@@ -17,9 +17,7 @@ const contactSchema = z.object({
     email: z.string().email('Email inválido'),
     phone: z.string().optional(),
     message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres'),
-    accept_terms: z.literal(true, {
-        errorMap: () => ({ message: 'Debes aceptar los términos' }),
-    }),
+    accept_terms: z.boolean().refine(val => val === true, 'Debes aceptar los términos'),
 })
 
 type ContactFormValues = z.infer<typeof contactSchema>
@@ -111,7 +109,8 @@ export default function ContactAgentForm({ propertyId, propertyTitle }: ContactA
                 <div className="flex items-center space-x-2">
                     <Checkbox
                         id="terms"
-                        onCheckedChange={(checked) => setValue('accept_terms', checked as true)}
+                        checked={!!watch('accept_terms')}
+                        onChange={(e) => setValue('accept_terms', e.target.checked as true)}
                     />
                     <Label htmlFor="terms" className="text-sm text-gray-500">
                         Acepto la política de privacidad

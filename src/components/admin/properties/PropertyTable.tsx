@@ -84,7 +84,7 @@ export function PropertyTable({ properties, isLoading }: PropertyTableProps) {
             <TableHead className="w-12">
               <Checkbox
                 checked={selected.length === properties.length}
-                onCheckedChange={handleSelectAll}
+                onChange={(e) => handleSelectAll(e.target.checked)}
               />
             </TableHead>
             <TableHead className="w-20">Imagen</TableHead>
@@ -104,7 +104,7 @@ export function PropertyTable({ properties, isLoading }: PropertyTableProps) {
               <TableCell>
                 <Checkbox
                   checked={selected.includes(property.id)}
-                  onCheckedChange={() => handleSelect(property.id)}
+                  onChange={() => handleSelect(property.id)}
                 />
               </TableCell>
               <TableCell>

@@ -69,7 +69,9 @@ export function TestimonialCard({
           <div className="flex items-center gap-2">
             <strong>Nombre:</strong> {testimonial.name}
             {testimonial.show_name && (
-              <CheckCircle className="w-4 h-4 text-green-600" title="Autoriza mostrar nombre" />
+              <span title="Autoriza mostrar nombre">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+              </span>
             )}
           </div>
           <div>

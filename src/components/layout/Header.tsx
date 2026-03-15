@@ -101,7 +101,7 @@ export default function Header() {
 
         {activeDropdown === key && (
           <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
-            {section.items.map((item, idx) =>
+            {section.items.map((item: any, idx) =>
               item.divider ? (
                 <div key={idx} className="my-2 border-t border-gray-200" />
               ) : (
@@ -199,7 +199,7 @@ export default function Header() {
                     </button>
                     {activeDropdown === key && section.items && (
                       <div className="pl-10 mt-1 mb-2 flex flex-col gap-1">
-                        {section.items.map((item, idx) =>
+                        {section.items.map((item: any, idx) =>
                           item.divider ? null : (
                             <Link
                               key={idx}

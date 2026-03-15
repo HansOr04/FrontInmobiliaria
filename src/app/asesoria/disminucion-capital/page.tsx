@@ -317,7 +317,7 @@ export default function DisminucionCapitalPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {methods.map((method, index) => {
               const Icon = method.icon
-              const riskColors = {
+              const riskColors: Record<string, string> = {
                 'Alto': 'text-red-600 bg-red-100',
                 'Medio': 'text-orange-600 bg-orange-100',
                 'Bajo': 'text-green-600 bg-green-100'
@@ -473,7 +473,7 @@ export default function DisminucionCapitalPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {considerations.map((item, index) => {
               const Icon = item.icon
-              const importanceColors = {
+              const importanceColors: Record<string, string> = {
                 'Crítico': 'bg-red-600',
                 'Alto': 'bg-orange-600',
                 'Medio': 'bg-blue-600'
