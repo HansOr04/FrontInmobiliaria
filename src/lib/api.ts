@@ -1,8 +1,24 @@
 import axios from 'axios'
-import type { ApiResponse, ApiError } from '@/types/api'
+import type { ApiError } from '@/types/api'
+
+const resolveApiBaseUrl = () => {
+  const raw = process.env.NEXT_PUBLIC_API_URL?.trim()
+
+  if (!raw) {
+    return 'http://localhost:5000/api'
+  }
+
+  if (/^https?:\/\//i.test(raw)) {
+    return raw
+  }
+
+  // If protocol is omitted (e.g. "inmobiliariaortizidrovo.com/api"),
+  // force HTTPS so axios does not treat it as a relative path.
+  return `https://${raw}`
+}
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+  baseURL: resolveApiBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
